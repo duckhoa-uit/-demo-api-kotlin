@@ -1,8 +1,7 @@
-package com.example.demoapi;
+package com.example.demoapi.models;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.List;
 
 public class RegisterResponse {

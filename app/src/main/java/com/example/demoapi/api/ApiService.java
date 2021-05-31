@@ -1,9 +1,9 @@
 package com.example.demoapi.api;
 
-import com.example.demoapi.LoginResponse;
-import com.example.demoapi.RegisterResponse;
-import com.example.demoapi.model.DataModal;
-import com.example.demoapi.User;
+import com.example.demoapi.models.LoginResponse;
+import com.example.demoapi.models.RegisterResponse;
+import com.example.demoapi.models.DataModal;
+import com.example.demoapi.models.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -28,6 +28,10 @@ public interface ApiService {
 
     @GET("users/")
     Call<List<User>> getUsers(@Query("format") String format);
+
+    @GET("users/")
+    Call<User> getUserByEmail(@Query("email") String email,
+                           @Query("format") String format);
 
     @POST("auth/login/")
     Call<LoginResponse> loginUser(@Body DataModal dataModal);

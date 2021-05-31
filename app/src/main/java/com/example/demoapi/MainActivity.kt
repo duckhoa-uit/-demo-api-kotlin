@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.demoapi.api.ApiService
-import com.example.demoapi.model.DataModal
+import com.example.demoapi.models.DataModal
+import com.example.demoapi.models.LoginResponse
+import com.example.demoapi.models.RegisterResponse
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registration.*
@@ -86,7 +88,8 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     if (response?.code() == 200){
                         Toast.makeText(applicationContext, "LOGIN SUCCESSFUL\naccess_token: " + response?.body()?.access_token, Toast.LENGTH_LONG).show()
-                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                        val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                        startActivity(intent)
                     }else if ((response?.code() == 400)){
                         val jsonResponse = JSONObject(response?.errorBody()?.string())
                         val errorMessage = jsonResponse["error_message"]

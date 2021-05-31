@@ -1,4 +1,4 @@
-package com.example.demoapi.model;
+package com.example.demoapi.models;
 
 public class DataModal {
     private String email;

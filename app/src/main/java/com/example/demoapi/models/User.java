@@ -1,4 +1,4 @@
-package com.example.demoapi;
+package com.example.demoapi.models;
 
 public class User {
     int id;
