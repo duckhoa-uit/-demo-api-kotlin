@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this@MainActivity, HomeActivity::class.java)
                         startActivity(intent)
                     }else if ((response?.code() == 400)){
-                        val jsonResponse = JSONObject(response?.errorBody()?.string())
+                        val jsonResponse = JSONObject(response.errorBody()?.string())
                         val errorMessage = jsonResponse["error_message"]
                         Toast.makeText(applicationContext,
                             "LOGIN FAILED\n$errorMessage", Toast.LENGTH_LONG).show()
@@ -100,7 +100,6 @@ class MainActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
                     Toast.makeText(applicationContext, "LOGIN FAILED" + t?.message, Toast.LENGTH_LONG).show()
                 }
-
             })
     }
 
@@ -122,12 +121,9 @@ class MainActivity : AppCompatActivity() {
                         showLogin()
                     }else if (response?.code() == 400){
                         val jsonResponse = JSONObject(response.errorBody().string())
-                        var error_message = ""
-                        if (jsonResponse["email"] != null){
-                            error_message += jsonResponse["email"]
-                        }
+                        val error_message = jsonResponse.getJSONArray("email")[0]
                         Toast.makeText(applicationContext,
-                            "REGISTER FAILED\n$jsonResponse", Toast.LENGTH_LONG).show()
+                            "REGISTER FAILED\n$error_message", Toast.LENGTH_LONG).show()
                     }
                 }
 
